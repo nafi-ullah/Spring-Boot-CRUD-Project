@@ -1,8 +1,21 @@
 package com.springlearn;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
+@Entity
 public class Person {
+    @Id
+    @SequenceGenerator(
+            name = "person_id_sequence",
+            sequenceName = "person_id_sequence"
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "customer_id_sequence"
+    )
+
     private Integer id;
     private String name;
     private String email;
