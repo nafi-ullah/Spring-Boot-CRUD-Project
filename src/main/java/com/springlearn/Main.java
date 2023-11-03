@@ -16,4 +16,6 @@ public class Main {
     public GreetResponse greet(){
         return new GreetResponse("Hello");
     }
+
+    record GreetResponse(String greet){}
 }
