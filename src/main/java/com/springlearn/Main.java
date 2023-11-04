@@ -2,9 +2,7 @@ package com.springlearn;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +24,21 @@ public class Main {
    @GetMapping
     public List<Person> getPerson(){
         return personRepository.findAll();
+   }
+
+    record NewPersonRequest(
+            String name,
+            String email,
+            Integer age
+    ){
+
+    }
+    @PostMapping
+   public void addPerson(@RequestBody NewPersonRequest request){
+        Person person = new Person();
+        person.setName(request.name);
+        person.setEmail(request.email);
+        person.setAge(request.age);
+        personRepository.save(person);
    }
 }
