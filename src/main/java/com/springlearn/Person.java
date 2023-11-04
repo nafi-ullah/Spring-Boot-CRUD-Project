@@ -13,7 +13,7 @@ public class Person {
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "customer_id_sequence"
+            generator = "person_id_sequence"
     )
 
     private Integer id;
