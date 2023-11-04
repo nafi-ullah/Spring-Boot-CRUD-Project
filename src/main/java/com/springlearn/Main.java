@@ -46,5 +46,4 @@ public class Main {
     public void deletePerson(@PathVariable("personId")Integer id){
         personRepository.deleteById(id);
    }
-
 }
