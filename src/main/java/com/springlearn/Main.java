@@ -41,4 +41,10 @@ public class Main {
         person.setAge(request.age);
         personRepository.save(person);
    }
+
+   @DeleteMapping("{personId}")
+    public void deletePerson(@PathVariable("personId")Integer id){
+        personRepository.deleteById(id);
+   }
+
 }
