@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootApplication //declare it as spring boot application
 @RestController
@@ -33,6 +34,9 @@ public class Main {
     ){
 
     }
+
+
+
     @PostMapping
    public void addPerson(@RequestBody NewPersonRequest request){
         Person person = new Person();
@@ -46,4 +50,20 @@ public class Main {
     public void deletePerson(@PathVariable("personId")Integer id){
         personRepository.deleteById(id);
    }
+
+
+    @PutMapping("/{personId}")
+    public Person updatePerson(@PathVariable("personId") Integer personId, @RequestBody NewPersonRequest request) {
+        Person person = personRepository.findById(personId).orElseThrow();
+
+        person.setName(request.name);
+        person.setEmail(request.email);
+        person.setAge(request.age);
+
+        personRepository.save(person);
+
+        return person;
+    }
+
+
 }
