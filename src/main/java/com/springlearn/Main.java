@@ -22,6 +22,8 @@ public class Main {
         SpringApplication.run(Main.class, args);
     }
 
+
+    // To get data from from database
    @GetMapping
     public List<Person> getPerson(){
         return personRepository.findAll();
@@ -36,7 +38,7 @@ public class Main {
     }
 
 
-
+// For post or create datas
     @PostMapping
    public void addPerson(@RequestBody NewPersonRequest request){
         Person person = new Person();
@@ -46,12 +48,14 @@ public class Main {
         personRepository.save(person);
    }
 
+//for deleteing any data by id
    @DeleteMapping("{personId}")
     public void deletePerson(@PathVariable("personId")Integer id){
         personRepository.deleteById(id);
    }
 
 
+   // Update data by database
     @PutMapping("/{personId}")
     public Person updatePerson(@PathVariable("personId") Integer personId, @RequestBody NewPersonRequest request) {
         Person person = personRepository.findById(personId).orElseThrow();
